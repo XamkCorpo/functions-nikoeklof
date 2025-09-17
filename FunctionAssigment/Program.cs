@@ -31,15 +31,15 @@ namespace FunctionAssigment
         // Ask for name and ensure it is not empty
         static string SetUserName()
         {
+            string name;
 
-            bool valid = false;
-            string name = "";
-            while (!valid)
+            while (true)
             {
+
                 Console.Write("Enter your name: ");
                 name = Console.ReadLine();
                 if (!string.IsNullOrWhiteSpace(name))
-                    valid = true;
+                    break;
                 else
                     Console.WriteLine("Name cannot be empty.");
             }
@@ -51,12 +51,12 @@ namespace FunctionAssigment
         {
             bool valid = false;
             int age = 0;
-            while (!valid)
+            while (true)
             {
                 Console.Write("Enter your age: ");
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out age) && age > 0)
-                    valid = true;
+                    break;
                 else
                     Console.WriteLine("Please enter a positive integer.");
             }
