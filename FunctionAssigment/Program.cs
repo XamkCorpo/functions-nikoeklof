@@ -1,4 +1,6 @@
-﻿namespace FunctionAssigment
+﻿using System.Xml.Linq;
+
+namespace FunctionAssigment
 {
     internal class Program
     {
@@ -8,11 +10,30 @@
             //Your job is to refactor this code to use functions for better readability and reusability.
             //Check learn on how to do this
 
-            string name = "";
-            int age = 0;
-            bool valid = false;
+            string name = SetUserName();
+            int age = SetUserAge();
+            PrintUser(age, name);
+            bool isAdult = IsAdult(age);
 
-            // Ask for name and ensure it is not empty
+            if (isAdult)
+            {
+                Console.WriteLine("You are an adult.");
+            }
+            else
+            {
+
+                Console.WriteLine("You are not an adult.");
+            }
+            CompareNames(name, "Matti");
+
+        }
+
+        // Ask for name and ensure it is not empty
+        static string SetUserName()
+        {
+
+            bool valid = false;
+            string name = "";
             while (!valid)
             {
                 Console.Write("Enter your name: ");
@@ -22,9 +43,14 @@
                 else
                     Console.WriteLine("Name cannot be empty.");
             }
+            return name;
+        }
+        // Ask for age and ensure it is a positive integer
 
-            // Ask for age and ensure it is a positive integer
-            valid = false;
+        static int SetUserAge()
+        {
+            bool valid = false;
+            int age = 0;
             while (!valid)
             {
                 Console.Write("Enter your age: ");
@@ -34,18 +60,29 @@
                 else
                     Console.WriteLine("Please enter a positive integer.");
             }
+            return age;
+        }
+        // Check if the user is an adult
 
-            // Print name and age
-            Console.WriteLine($"Your name is {name} and your age is {age}.");
-
-            // Check if the user is an adult
+        static bool IsAdult(int age)
+        {
             if (age >= 18)
-                Console.WriteLine("You are an adult.");
+                return true;
             else
-                Console.WriteLine("You are not an adult.");
+                return false;
 
-            // Compare the name to another string (e.g., "Matti")
-            string compareName = "Matti";
+        }
+        // Print name and age
+        static void PrintUser(int age, string name)
+        {
+
+            Console.WriteLine($"Your name is {name} and your age is {age}.");
+        }
+        // Compare the name to another string (e.g., "Matti")
+        static void CompareNames(string input, string compareName)
+        {
+
+
 
             // Comparison ignoring case
             if (name.Equals(compareName, StringComparison.OrdinalIgnoreCase))
