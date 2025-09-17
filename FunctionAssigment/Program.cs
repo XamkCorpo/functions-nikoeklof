@@ -49,11 +49,10 @@ namespace FunctionAssigment
 
         static int SetUserAge()
         {
-            bool valid = false;
             int age = 0;
             while (true)
             {
-                Console.Write("Enter your age: ");
+                Console.WriteLine("Enter your age: ");
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out age) && age > 0)
                     break;
