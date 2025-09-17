@@ -85,11 +85,11 @@ namespace FunctionAssigment
 
 
             // Comparison ignoring case
-            if (name.Equals(compareName, StringComparison.OrdinalIgnoreCase))
+            if (input.Equals(compareName, StringComparison.OrdinalIgnoreCase))
                 Console.WriteLine("Your name matches 'Matti' (case-insensitive).");
 
             // Exact match comparison (case-sensitive)
-            if (name.Equals(compareName))
+            if (input.Equals(compareName))
                 Console.WriteLine("Your name is exactly 'Matti' (case-sensitive).");
         }
     }
