@@ -12,9 +12,10 @@ namespace Calculator
             SelectCalculus(selection);
 
         }
-
+        //Ask user for the type of calculation, and return the selection as integer
         static int AskCalculus()
         {
+            
             Console.WriteLine("Select the type of calculus you would like to do.");
             Console.WriteLine("1) Summation");
             Console.WriteLine("2) Subtraction");
@@ -41,7 +42,7 @@ namespace Calculator
                 }
             }
         }
-
+        //Selects the operation depending on the selection argument
         static void SelectCalculus(int selection)
         {
             int[] input;
@@ -149,7 +150,7 @@ namespace Calculator
             }
             return [numberA, numberB];
         }
-
+        //function titles explain themselfs
         static int SumOfNumbers(int a, int b)
         {
             return a + b;
@@ -169,7 +170,7 @@ namespace Calculator
         {
             return a * b;
         }
-
+        //Print the calculation type, inserted numbers and the result of the calculus
         static void PrintResult(double result, string type, int[] numbers)
         {
             Console.WriteLine(
