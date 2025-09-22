@@ -1,4 +1,5 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using Microsoft.VisualBasic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Calculator
 {
@@ -6,13 +7,46 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+
+            int selection = AskCalculus();
+            SelectCalculus(selection);
+
+        }
+
+        static int AskCalculus()
+        {
+            Console.WriteLine("Select the type of calculus you would like to do.");
+            Console.WriteLine("1) Summation");
+            Console.WriteLine("2) Subtraction");
+            Console.WriteLine("3) Division");
+            Console.WriteLine("4) Multiplication");
+
+            while (true)
+            {
+                string calculusSelection = Console.ReadLine();
+
+                if (
+                    int.TryParse(calculusSelection, out int selection)
+                    && selection > 0
+                    && selection <= 4
+                )
+                {
+                    return selection;
+                }
+
+
+                else
+                {
+                    Console.WriteLine("Invalid input, try again");
+                }
+            }
+        }
+
+        static void SelectCalculus(int selection)
+        {
             int[] input;
             double result;
             string calcType = "";
-
-
-            int selection = AskCalculus();
-
             switch (selection)
             {
                 case 1:
@@ -61,35 +95,8 @@ namespace Calculator
             }
 
         }
-        
-        static int AskCalculus()
-        {
-            Console.WriteLine("Select the type of calculus you would like to do.");
-            Console.WriteLine("1) Summation");
-            Console.WriteLine("2) Subtraction");
-            Console.WriteLine("3) Division");
-            Console.WriteLine("4) Multiplication");
-
-            while (true)
-            {
-                string calculusSelection = Console.ReadLine();
-
-                if (
-                    int.TryParse(calculusSelection, out int selection)
-                    && selection > 0
-                    && selection <= 4
-                )
-                {
-                    return selection;
-                }
 
 
-                else
-                {
-                    Console.WriteLine("Invalid input, try again");
-                }
-            }
-        }
 
         //Ask user for numbers to do calculus with and return them in array
         static int[] AskNumbers(string calcType)
