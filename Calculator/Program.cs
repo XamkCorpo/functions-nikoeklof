@@ -84,6 +84,7 @@ namespace Calculator
                 if (int.TryParse(firstNumber, out int parsedNumber))
                 {
                     numberA = parsedNumber;
+
                     break;
                 }
                 else
@@ -120,7 +121,7 @@ namespace Calculator
             return a - b;
         }
 
-        static double DivisionOfNumbers(int a, int b)
+        static double DivisionOfNumbers(double a, double b)
         {
             return a / b;
         }
