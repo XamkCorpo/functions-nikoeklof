@@ -10,11 +10,66 @@ namespace Calculator
             double result;
             string calcType = "";
 
+
+            int selection = AskCalculus();
+
+            switch (selection)
+            {
+                case 1:
+                    {
+
+
+                        calcType = "Summation";
+                        input = AskNumbers(calcType);
+                        result = SumOfNumbers(input[0], input[1]);
+                        PrintResult(result, calcType, input);
+                        break;
+                    }
+
+                case 2:
+                    {
+
+
+                        calcType = "Subtraction";
+                        input = AskNumbers(calcType);
+                        result = SubtractionOfNumbers(input[0], input[1]);
+                        PrintResult(result, calcType, input);
+                        break;
+                    }
+
+                case 3:
+                    {
+
+
+                        calcType = "Division";
+                        input = AskNumbers(calcType);
+                        result = DivisionOfNumbers(input[0], input[1]);
+                        PrintResult(result, calcType, input);
+                        break;
+                    }
+
+                case 4:
+                    {
+
+                        calcType = "Multiplication";
+                        input = AskNumbers(calcType);
+                        result = MultiplicationOfNumbers(input[0], input[1]);
+                        PrintResult(result, calcType, input);
+                        break;
+                    }
+
+            }
+
+        }
+        
+        static int AskCalculus()
+        {
             Console.WriteLine("Select the type of calculus you would like to do.");
             Console.WriteLine("1) Summation");
             Console.WriteLine("2) Subtraction");
             Console.WriteLine("3) Division");
             Console.WriteLine("4) Multiplication");
+
             while (true)
             {
                 string calculusSelection = Console.ReadLine();
@@ -25,53 +80,19 @@ namespace Calculator
                     && selection <= 4
                 )
                 {
-                    switch (selection)
-                    {
-                        case 1:
-                        {
-                            input = AskNumbers();
-                            result = SumOfNumbers(input[0], input[1]);
-                            calcType = "Summation";
-                            PrintResult(result, calcType, input);
-                            break;
-                        }
-
-                        case 2:
-                        {
-                            input = AskNumbers();
-                            result = SubtractionOfNumbers(input[0], input[1]);
-                            calcType = "Subtraction";
-                            PrintResult(result, calcType, input);
-                            break;
-                        }
-
-                        case 3:
-                        {
-                            input = AskNumbers();
-                            result = DivisionOfNumbers(input[0], input[1]);
-                            calcType = "Division";
-                            PrintResult(result, calcType, input);
-                            break;
-                        }
-
-                        case 4:
-                        {
-                            input = AskNumbers();
-                            result = MultiplicationOfNumbers(input[0], input[1]);
-                            calcType = "Multiplication";
-                            PrintResult(result, calcType, input);
-                            break;
-                        }
-                    }
-                    break;
+                    return selection;
                 }
+
+
                 else
+                {
                     Console.WriteLine("Invalid input, try again");
+                }
             }
         }
 
         //Ask user for numbers to do calculus with and return them in array
-        static int[] AskNumbers()
+        static int[] AskNumbers(string calcType)
         {
             Console.WriteLine("Enter numbers to calculate");
 
@@ -83,7 +104,12 @@ namespace Calculator
                 string firstNumber = Console.ReadLine();
                 if (int.TryParse(firstNumber, out int parsedNumber))
                 {
-                    numberA = parsedNumber;
+                    if (calcType.Equals("Division") && parsedNumber <= 0)
+                    {
+                        Console.WriteLine("Cannot divide a number that is zero or a negative number, try again");
+                        continue;
+                    }
+                    else numberA = parsedNumber;
 
                     break;
                 }
@@ -99,7 +125,13 @@ namespace Calculator
                 string firstNumber = Console.ReadLine();
                 if (int.TryParse(firstNumber, out int parsedNumber))
                 {
-                    numberB = parsedNumber;
+                    if (calcType.Equals("Division") && parsedNumber <= 0)
+                    {
+                        Console.WriteLine("Cannot divide with zero or a negative number, try again");
+                        continue;
+                    }
+                    else numberB = parsedNumber;
+
                     break;
                 }
                 else
